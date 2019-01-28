@@ -219,29 +219,10 @@ class pos
         return $res;
     }
 
-    public function tambah_pajak($npajak, $nilai)
-    {
-        $perintah = "INSERT INTO tb_pajak values(null, '$npajak', '$nilai')";
-        // null karena msh auto increment
-        $res = mysqli_query($this->koneksi, $perintah);
-        if ($res) {
-                    echo "<script>
-							alert('Data Berhasil Disimpan');
-							window.location.href='?page=pajak ';
-						</script>"; 
-        }
-    }
 
-    public function tampil_pajak_ubah($kpajak)
+    public function ubah_pajak($kpajak, $rupiah, $nilai)
     {
-        $perintah = "SELECT * FROM tb_pajak WHERE kode_pajak = '$kpajak'";
-        $res = mysqli_query($this->koneksi, $perintah);
-        return $res;
-    }
-
-    public function ubah_pajak($kpajak, $npajak, $nilai)
-    {
-        $perintah = "UPDATE tb_pajak SET nama_pajak='$npajak', nilai='$nilai' WHERE kode_pajak='$kpajak'";
+        $perintah = "UPDATE tb_pajak SET pajak_rupiah='$rupiah', pajak_nilai='$nilai' WHERE kode_pajak='$kpajak'";
         $res = mysqli_query($this->koneksi, $perintah);
         if ($res) {
                     echo "<script>
@@ -251,18 +232,6 @@ class pos
         }
     }
 
-    public function hapus_pajak($kpajak)
-    {
-        $perintah = "DELETE FROM tb_pajak WHERE kode_pajak ='$kpajak'";
-        $res = mysqli_query($this->koneksi, $perintah);
-
-        if ($res) {
-            echo "<script>
-                    alert('Data Berhasil Dihapus');
-                    window.location.href='?page=pajak ';
-                </script>"; 
-        }
-    }
 
     // page karyawan
     public function tampil_di_karyawan()
